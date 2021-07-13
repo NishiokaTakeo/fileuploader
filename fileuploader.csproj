@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <UserSecretsId>dotnet-fileuploader-6D095FBC-CCC0-44EB-AE74-A434488C8784</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- <PackageReference Include="IronPdf" Version="2021.3.1" /> -->
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.24.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.12.0" />
+    <!-- <PackageReference Include="PdfiumViewer" Version="2.13.0.0" /> -->
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <!-- <PackageReference Include="Syncfusion.PDF.OCR.Net.Core" Version="19.1.0.63" />
+    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="19.1.0.64" /> -->
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="Tesseract" Version="4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Spider.Data">
+      <HintPath>src/libs/Spider.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spider.Utilities">
+      <HintPath>src/libs/Spider.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="SpiderDocsModule">
+      <HintPath>src/libs/SpiderDocsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+ <ItemGroup>
+    <AssetsSourceFiles Include="assets/**/*.*"/>
+  </ItemGroup>
+  
+ <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+ <!-- <ItemGroup>
+    <Content Include="./src/assets\tessdata\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup> -->
+</Project>
